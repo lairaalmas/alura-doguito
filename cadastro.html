@@ -25,15 +25,15 @@
 			<form action="./cadastro_concluido.html" class="formulario flex flex--coluna">
 				<fieldset>
 					<legend class="formulario__legenda">Informações básicas</legend>
-					<div class="input-container">
+					<div class="input-container"> <!-- adicionar input-container--invalido ativa css de campo invalido -->
 						<!-- type=text required -->
-						<input name="nome" id="nome" class="input" type="text" placeholder="Nome" required>
+						<input name="nome" id="nome" class="input" type="text" placeholder="Nome" data-tipo="nome" required>
 						<label class="input-label" for="nome">Nome</label>
 						<span class="input-mensagem-erro">Este campo não está válido</span>
 					</div>
 					<div class="input-container">
 						<!-- type=email required-->
-						<input name="email" id="email" class="input" type="email" placeholder="Email" required>
+						<input name="email" id="email" class="input" type="email" placeholder="Email" data-tipo="email" required>
 						<label class="input-label" for="email">Email</label>
 						<span class="input-mensagem-erro">Este campo não está válido</span>
 					</div>
@@ -42,9 +42,8 @@
 							de 6 a 12 caracteres, pelo menos 1 maiuscula, minuscula, numero e nenhum simbolo 
 						-->
 						<input name="senha" id="senha" class="input" type="password" placeholder="Senha"
-							pattern='^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?!.*[ !@#$%^&*_=+-]).{6,12}$'
-							title="A senha deve conter entre 6 e 12 caracteres, pelo menos 1 letra maiúscula, 1 letra minúscula, 1 número e não deve conter símbolos"
-							required>
+							pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?!.*[ !@#$%^&*_=+-]).{6,12}$"
+							title="A senha deve conter entre 6 e 12 caracteres, pelo menos 1 letra maiúscula, 1 letra minúscula, 1 número e não deve conter símbolos" data-tipo="senha"	required>
 						<label class="input-label" for="senha">Senha</label>
 						<span class="input-mensagem-erro">Este campo não está válido</span>
 					</div>
@@ -55,7 +54,7 @@
 						<!-- type=date (cria uma mascara no campo) required 
 							(codigo js para nao deixar menores de 18 anos)
 						-->
-						<input name="nascimento" id="nascimento" class="input" type="date" placeholder="Data de nascimento" required>
+						<input name="nascimento" id="nascimento" class="input" type="date" placeholder="Data de nascimento" data-tipo="dataNascimento" required>
 						<label class="input-label" for="nascimento">Data de nascimento</label>
 						<span class="input-mensagem-erro">Este campo não está válido</span>
 					</div>
@@ -92,7 +91,7 @@
 			</form>
 		</section>
 	</main>
-	<script src="./js/validacao.js"></script>
+	<script src="./js/app.js" type="module"></script>
 </body>
 
 </html>
