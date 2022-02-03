@@ -134,3 +134,9 @@
     margin-top: 0.5rem;
     padding-left: 0.5rem;
 }
+
+
+.input:required + label::after{
+    color: red;
+    content: " *";
+}
