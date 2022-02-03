@@ -25,7 +25,8 @@
 			<form action="./cadastro_concluido.html" class="formulario flex flex--coluna">
 				<fieldset>
 					<legend class="formulario__legenda">Informações básicas</legend>
-					<div class="input-container"> <!-- adicionar input-container--invalido ativa css de campo invalido -->
+					<div class="input-container">
+						<!-- adicionar input-container--invalido ativa css de campo invalido -->
 						<!-- type=text required -->
 						<input name="nome" id="nome" class="input" type="text" placeholder="Nome" data-tipo="nome" required>
 						<label class="input-label" for="nome">Nome</label>
@@ -43,7 +44,8 @@
 						-->
 						<input name="senha" id="senha" class="input" type="password" placeholder="Senha"
 							pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?!.*[ !@#$%^&*_=+-]).{6,12}$"
-							title="A senha deve conter entre 6 e 12 caracteres, pelo menos 1 letra maiúscula, 1 letra minúscula, 1 número e não deve conter símbolos" data-tipo="senha"	required>
+							title="A senha deve conter entre 6 e 12 caracteres, pelo menos 1 letra maiúscula, 1 letra minúscula, 1 número e não deve conter símbolos"
+							data-tipo="senha" required>
 						<label class="input-label" for="senha">Senha</label>
 						<span class="input-mensagem-erro">Este campo não está válido</span>
 					</div>
@@ -54,7 +56,8 @@
 						<!-- type=date (cria uma mascara no campo) required 
 							(codigo js para nao deixar menores de 18 anos)
 						-->
-						<input name="nascimento" id="nascimento" class="input" type="date" placeholder="Data de nascimento" data-tipo="dataNascimento" required>
+						<input name="nascimento" id="nascimento" class="input" type="date" placeholder="Data de nascimento"
+							data-tipo="dataNascimento" required>
 						<label class="input-label" for="nascimento">Data de nascimento</label>
 						<span class="input-mensagem-erro">Este campo não está válido</span>
 					</div>
@@ -67,22 +70,23 @@
 				<fieldset>
 					<legend class="formulario__legenda">Endereço</legend>
 					<div class="input-container">
-						<input name="cep" id="cep" class="input" type="text" placeholder="CEP">
+						<input name="cep" id="cep" class="input" type="text" placeholder="CEP" pattern="[\d]{5}-?[\d]{3}"
+							data-tipo="cep" required>
 						<label class="input-label" for="cep">CEP</label>
 						<span class="input-mensagem-erro">Este campo não está válido</span>
 					</div>
 					<div class="input-container">
-						<input name="logradouro" id="logradouro" class="input" type="text" placeholder="Logradouro">
+						<input name="logradouro" id="logradouro" class="input" type="text" placeholder="Logradouro" data-tipo="logradouro" required>
 						<label class="input-label" for="logradouro">Logradouro</label>
 						<span class="input-mensagem-erro">Este campo não está válido</span>
 					</div>
 					<div class="input-container">
-						<input name="cidade" id="cidade" class="input" type="text" placeholder="Cidade">
+						<input name="cidade" id="cidade" class="input" type="text" placeholder="Cidade" data-tipo="cidade" required>
 						<label class="input-label" for="cidade">Cidade</label>
 						<span class="input-mensagem-erro">Este campo não está válido</span>
 					</div>
 					<div class="input-container">
-						<input name="estado" id="estado" class="input" type="text" placeholder="Estado">
+						<input name="estado" id="estado" class="input" type="text" placeholder="Estado" data-tipo="estado" required>
 						<label class="input-label" for="estado">Estado</label>
 						<span class="input-mensagem-erro">Este campo não está válido</span>
 					</div>

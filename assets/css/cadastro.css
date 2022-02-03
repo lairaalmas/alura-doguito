@@ -27,3 +27,8 @@
         margin-bottom: 2rem;
     }
 }
+
+label::after {
+    color: red;
+    content: " *";
+}

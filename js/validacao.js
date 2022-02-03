@@ -35,7 +35,7 @@ const mensagensDeErro = {
   },
   email: {
     valueMissing: 'O campo de email não pode estar vazio.',
-    typeMismatch: 'O email digitado não é válido'
+    typeMismatch: 'O email digitado não é válido.'
   },
   senha: {
     valueMissing: 'O campo de senha não pode estar vazio.',
@@ -46,14 +46,29 @@ const mensagensDeErro = {
     valueMissing: 'O campo de data de nascimento não pode estar vazio.'
   },
   cpf: {
-    valueMissing: 'O campo de CPF não deve estar vazio',
-    customError: 'O CPF digitado não é válido'
+    valueMissing: 'O campo de CPF não deve estar vazio.',
+    customError: 'O CPF digitado não é válido.'
+  },
+  cep: {
+    valueMissing: 'O campo de CEP não pode estar vazio.',
+    patternMismatch: 'O CEP digitado não é válido.',
+    customError: 'Não foi possível buscar este CEP.'
+  },
+  logradouro: {
+    valueMissing: 'O campo de logradouro não pode estar vazio.'
+  },
+  cidade: {
+    valueMissing: 'O campo de cidade não pode estar vazio.'
+  },
+  estado: {
+    valueMissing: 'O campo de estado não pode estar vazio.'
   }
 }
 
 const validadores = { // contem tipos de input
   dataNascimento: (input) => validaDataNascimento(input),
-  cpf: (input) => validaCPF(input)
+  cpf: (input) => validaCPF(input),
+  cep: (input) => recuperarCEP(input)
 }
 
 const mostraMensagemDeErro = (tipoDeInput, input) => {
@@ -91,6 +106,7 @@ const maiorQue18 = (dataRecebida) => {
 
 // CAMPO: CPF 
 
+// não garante que o cpf pertence a alguem, e sim se a estrutura dele é válida
 const validaCPF = (input) => {
   const cpfFormatado = input.value.replace(/\D/g, ''); // regex para remover tudo que nao for numero
   let mensagem = '';
@@ -189,3 +205,41 @@ const confirmaDigito = (soma) => {
   return 11 - (soma % 11);
 }
 
+// CAMPO: CEP
+
+const recuperarCEP = (input) => {
+  
+  const cep = input.value.replace('/\D/g', ''); // substitui tudo que não for numeros
+  const url = `https://viacep.com.br/ws/${cep}/json/`;
+  const options = {
+    method: 'GET',
+    mode: 'cors',
+    headers: {
+      'content-type':'application/json;charset=utf-8'
+    }
+  }
+
+  if (!input.validity.patternMismatch && !input.validity.valueMissing) { // se não houver erro
+    console.log("fui")
+    fetch (url, options).then(response => response.json()).then(data => {
+      if (data.erro) {
+        input.setCustomValidity('Não foi possível buscar este CEP.'); // erro
+        return // encerra fetch
+      }
+      input.setCustomValidity(''); // ok
+      preencheCamposComCEP(data);
+      return // encerra fetch
+    })
+  }
+
+}
+
+const preencheCamposComCEP = (data) => {
+  const logradouro = document.querySelector('[data-tipo="logradouro"]');
+  const cidade = document.querySelector('[data-tipo="cidade"]');
+  const estado = document.querySelector('[data-tipo="estado"]');
+
+  logradouro.value = data.logradouro;
+  cidade.value = data.localidade;
+  estado.value = data.uf;
+}

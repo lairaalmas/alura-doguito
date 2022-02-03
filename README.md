@@ -7,3 +7,8 @@
 - HTML
 - CSS
 - JavaScript
+  - API [ViaCEP](https://viacep.com.br/)
+  - API [Fetch](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API)
+  - customização de mensagens de erro
+  - [validação de cpf](https://dicasdeprogramacao.com.br/algoritmo-para-validar-cpf/)
+  - regex
